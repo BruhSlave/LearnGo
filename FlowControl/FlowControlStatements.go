@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 	//"time"
 )
 
@@ -66,6 +67,39 @@ func main() {
 
 	//Exercise 1
 
-	fmt.Printf(" 	Newton method = %f \n", Sq(2))
-	fmt.Printf(" 	Math.Sqrt = %f", math.Sqrt(2))
+	//fmt.Printf(" 	Newton method = %f \n", Sq(2))
+	//fmt.Printf(" 	Math.Sqrt = %f", math.Sqrt(2))
+
+	fmt.Println("Когда Пятница?")
+	today := time.Now().Weekday()
+	switch time.Friday {
+	case today + 0:
+		fmt.Println("Сегодня")
+	case today + 1:
+		fmt.Println("Завтра")
+	case today + 2:
+		fmt.Println("Послезавтра")
+	default:
+		fmt.Println("Не скоро")
+	}
+
+	t := time.Now()
+	switch {
+	case t.Hour() <= 12:
+		fmt.Println("Good Morning")
+	case t.Hour() <= 17:
+		fmt.Println("Good Afternoon")
+	case t.Hour() >= 22:
+		fmt.Println("Good Night")
+	}
+
+	defer fmt.Println("Privet")
+	fmt.Print("Pasha")
+	fmt.Println(" and Misha")
+
+	fmt.Println("Counting")
+	for i := 1; i < 15; i++ {
+		defer fmt.Print(i, " - ")
+	}
+	fmt.Println("Done")
 }
