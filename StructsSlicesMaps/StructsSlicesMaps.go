@@ -35,4 +35,13 @@ func main() {
 	fmt.Print(v, "\n\n\n")
 
 	fmt.Print(m, n, m1, m2, "\n\n\n")
+
+	var Arr [2]string           // Объявление массива элементов String
+	Arr[0] = "Privet"           // Инициализация ячейки [0]
+	Arr[1] = "Pasha"            // Инициализация ячейки [1]
+	fmt.Println(Arr[0], Arr[1]) // Вывод массива Arr
+
+	primes := [5]int{1, 2, 34, 5, 6} // Массив primes c 5 элементами int
+	fmt.Print(primes, "\n\n\n")      // Вывод массива primes
+
 }
