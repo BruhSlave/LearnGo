@@ -9,9 +9,9 @@ import "fmt"
 
 func main() {
 	Answer := 0
-	for i := 0; i < 1000; i++ {
-		if (i%3 == 0) || (i%5 == 0) {
-			Answer += i
+	for i := 0; i < 1000; i++ { // Счет до 1000
+		if (i%3 == 0) || (i%5 == 0) { // Проверка кртаности на 5 и 3
+			Answer += i // Сумма всех кратных
 		}
 	}
 	fmt.Println(Answer)
