@@ -13,14 +13,14 @@ func main() {
 	fib2 := 2
 
 	for {
-		inter = fib1 + fib2
-		fib1 = fib2
-		fib2 = inter
+		inter = fib1 + fib2 // Промежуточный элемент; новый член ряда
+		fib1 = fib2         // Сдвиг по ряду вперед
+		fib2 = inter        // Добавление элемента ряда
 
-		if fib2%2 == 0 {
-			answer += fib2
-			if answer > 4e6 {
-				fmt.Println(fib2)
+		if fib2%2 == 0 { //Кратность элементов ряда на 2
+			answer += fib2    // Сумма всех кратных 2
+			if answer > 4e6 { // Если ответ переходит границу
+				fmt.Println(fib2) // Выводим предыдущий элемент суммы ряда
 				break
 			}
 		}
