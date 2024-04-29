@@ -33,9 +33,9 @@ func main() {
 	*p = 200        // set a through the pointer
 	fmt.Println(a)  // see the new value of a
 
-	p = &b                  // point to b
-	*p = *p + 1000          // Sum b through the pointer
-	fmt.Print(*p, "\n\n\n") // see the new value of b
+	p = &b                 // point to b
+	*p = *p + 1000         // Sum b through the pointer
+	fmt.Print(b, "\n\n\n") // see the new value of b
 
 	v := Vertex{1, 2}
 	v.X = 5          // Доступ к структурным полям осуществляется
@@ -70,6 +70,7 @@ func main() {
 	fmt.Println(SlLit1)
 	SlLit2 := []string{"Pasha", "Misha", "Sasha"}
 	fmt.Println(SlLit2)
+
 	StSliLit := []struct { // Slice literal структуры
 		r int
 		y string
@@ -85,13 +86,13 @@ func main() {
 	SliceDef = ArrDef[2:]  // и длине Slice для верхней границы
 	fmt.Print(SliceDef, "\n\n\n")
 
-	ArrLenCap := []int{1, 2, 3, 4, 5, 6} //Slice имеет как длину, так и вместимость.
-	printSlice(ArrLenCap)                // Длина Slice - это количество элементов, которые он содержит.
-	ArrLenCap = ArrLenCap[:0]            // Емкость Slice - это количество элементов в базовом массиве, отсчитываемое от первого элемента в Slice.
-	printSlice(ArrLenCap)                // Вы можете увеличить длину Slice, повторно нарезав его,
-	ArrLenCap = ArrLenCap[:5]            //	при условии, что он обладает достаточной емкостью
+	ArrLenCap := []int{1, 2, 3, 4, 5, 6, 9} //Slice имеет как длину, так и вместимость.
+	printSlice(ArrLenCap)                   // Длина Slice - это количество элементов, которые он содержит.
+	ArrLenCap = ArrLenCap[:0]               // Емкость Slice - это количество элементов в базовом массиве, отсчитываемое от первого элемента в Slice.
+	printSlice(ArrLenCap)                   // Вы можете увеличить длину Slice, повторно нарезав его,
+	ArrLenCap = ArrLenCap[:5]               //	при условии, что он обладает достаточной емкостью
 	printSlice(ArrLenCap)
-	ArrLenCap = ArrLenCap[1:4]
+	ArrLenCap = ArrLenCap[1:6]
 	printSlice(ArrLenCap)
 	fmt.Print("\n\n\n")
 
@@ -112,6 +113,7 @@ func main() {
 
 	SliceAppend := append(ArrMakeSl1, 5, 6) // Slice добавляются новые элементы, поэтому в Go предусмотрена встроенная функция append
 	fmt.Printf("len=%d cap=%d %v\n", len(SliceAppend), cap(SliceAppend), SliceAppend)
+	fmt.Print("\n\n\n")
 	//Результирующее значение append представляет собой фрагмент,
 	// содержащий все элементы исходного фрагмента плюс предоставленные значения.
 
@@ -119,4 +121,52 @@ func main() {
 	будет выделен массив большего размера.
 	Возвращаемый фрагмент будет указывать на вновь выделенный массив.
 	*/
+
+	var Ran = []int{1, 2, 3, 4, 5, 6, 7}
+
+	for i, v := range Ran {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+	fmt.Print("\n\n\n")
+
+	pow := make([]int, 10)
+
+	for i := range pow { // Переменная i проходит через каждый индекс массива pow
+		pow[i] = 1 << uint(i) //Для каждого индекса i выполняется операция 1 << uint(i), которая сдвигает биты числа 1 на i позиций влево.
+	} //Это эквивалентно возведению числа 2 в степень i
+	for i, value := range pow { // Используя range
+		fmt.Printf("%d - %d\n", i, value) // Выводим index (i) и ответ value
+	}
+	fmt.Print("\n\n\n")
+
+	type Vertex struct {
+		Lat, Long float64
+	}
+	var m map[string]Vertex     //Объявляем Map m с ключами string и значениями типа Vertex
+	m = make(map[string]Vertex) // Инициализируем при помощи make
+	m["Bell Labs"] = Vertex{    // Добавляем элемент со значениями Vertex
+		40.6845, -70.17263,
+	}
+	fmt.Print(m["Bell Labs"], "\n\n\n") // Вывод значения с ключом "Bell Labs" карты m
+
+	type Ver struct {
+		Lat1, Long1 float64
+	}
+	var m1 = map[string]Ver{ // Map Literal с 2 элементами
+		"Bell labs1": {
+			45.1238, -84.12837,
+		},
+		"Google": {
+			64.8236, 23.3764,
+		},
+	}
+	fmt.Print(m1, "\n\n\n")
+
+	m3 := make(map[string]int)
+	m3["Answer"] = 50
+	fmt.Print(m3["Answer"], "\n")
+	m3["Answer"] = 100
+	fmt.Print(m3["Answer"], "\n")
+	delete(m, "Answer")
+	fmt.Print(m3["Answer"], "\n\n\n")
 }
