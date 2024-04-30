@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Vertex struct {
 	X int
@@ -14,15 +17,20 @@ var (
 	n  = &Vertex{1, 2} // имеет тип *Vertex
 )
 
-//Slice length and capacity
+// Slice length and capacity
 func printSlice(ArrLenCap []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(ArrLenCap), cap(ArrLenCap), ArrLenCap)
 	//Длина и емкость Slice могут быть получены с помощью выражений len(s) и cap(s).
 }
 
-//Creating a slice with make
+// Creating a slice with make
 func printMakeSlice(a string, b []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n", a, len(b), cap(b), b)
+}
+
+// Функция compute принимает функцию, которая принимает два float64 и возвращает float64
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
 }
 
 func main() {
@@ -169,4 +177,12 @@ func main() {
 	fmt.Print(m3["Answer"], "\n")
 	delete(m, "Answer")
 	fmt.Print(m3["Answer"], "\n\n\n")
+
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*y + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
+	fmt.Print("\n\n\n")
 }
