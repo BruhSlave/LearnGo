@@ -33,6 +33,15 @@ func compute(fn func(float64, float64) float64) float64 {
 	return fn(3, 4)
 }
 
+// Function closures
+func adder() func(int) int { // Функция может принимать другую функцию, как аргумент возврата
+	sum := 0
+	return func(x int) int { // Выводит функцию, приним. пер. x, которая выводит sum
+		sum += x
+		return sum
+	}
+}
+
 func main() {
 	a, b := 50, 100
 
@@ -133,7 +142,7 @@ func main() {
 	var Ran = []int{1, 2, 3, 4, 5, 6, 7}
 
 	for i, v := range Ran {
-		fmt.Printf("2**%d = %d\n", i, v)
+		fmt.Printf("%d = %d\n", i, v)
 	}
 	fmt.Print("\n\n\n")
 
@@ -178,11 +187,19 @@ func main() {
 	delete(m, "Answer")
 	fmt.Print(m3["Answer"], "\n\n\n")
 
-	hypot := func(x, y float64) float64 {
-		return math.Sqrt(x*y + y*y)
+	hypot := func(x, y float64) float64 { // Функция hypot, которая приним. 2 аргумента типа float64
+		return math.Sqrt(x*y + y*y) // Возвращает 1 значение типа float64
 	}
-	fmt.Println(hypot(5, 12))
-	fmt.Println(compute(hypot))
-	fmt.Println(compute(math.Pow))
+	fmt.Println(hypot(5, 12))      // Считаем функцию hypot
+	fmt.Println(compute(hypot))    // Считаем функцию hypot с переменными из функции compute
+	fmt.Println(compute(math.Pow)) // Считаем степень с переменными из функции compute (3 в степени 4)
 	fmt.Print("\n\n\n")
+
+	pos, neg := adder(), adder() // Функции pos и neg
+	for i := 0; i < 10; i++ {
+		fmt.Println(pos(i), // Вывод pos(i), где i есть принимаемая переменная для аргумента возврата функции adder() (Sum += x)
+			neg(2*i)) // Вывод pos(i), где i есть принимаемая переменная для аргумента возврата функции adder() (Sum += x)
+	}
+	fmt.Print("\n\n\n")
+
 }
