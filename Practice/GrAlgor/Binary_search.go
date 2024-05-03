@@ -26,5 +26,5 @@ func binary_search(list []int, item int) int {
 func main() {
 	my_list := []int{1, 3, 5, 7, 9}
 
-	fmt.Println(binary_search(my_list, 7)) // Должно выводить 4, так как 9 находится на позиции 4
+	fmt.Println(binary_search(my_list, 7))
 }
