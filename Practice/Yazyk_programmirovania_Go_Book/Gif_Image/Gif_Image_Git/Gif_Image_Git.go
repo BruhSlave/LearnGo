@@ -11,11 +11,12 @@ import (
 	"os"
 )
 
-var palette = []color.Color{color.Black, color.CMYK{74, 0, 82, 1}}
+var palette = []color.Color{color.Black, color.CMYK{74, 0, 82, 1}, color.CMYK{100, 0, 0, 20}}
 
 const (
 	whiteIndex = 0 // first color in palette
 	blackIndex = 1 // second color in palette
+	ColorIndex = 2
 )
 
 func main() {
@@ -24,7 +25,7 @@ func main() {
 
 func lissajous(out io.Writer) {
 	const (
-		cycles  = 5     // number of complete x oscillator revolutions
+		cycles  = 10    // number of complete x oscillator revolutions
 		res     = 0.001 // angular resolution
 		size    = 500   // image canvas covers [-size..+size]
 		nframes = 165   // number of animation frames
